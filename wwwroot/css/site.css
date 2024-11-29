@@ -1,4 +1,4 @@
-html {
+﻿html {
   font-size: 14px;
 }
 
@@ -152,3 +152,14 @@ input[type=number] {
 .jmbg input:focus::placeholder {
     color: transparent !important; 
 }
+
+.refresh {
+    color:saddlebrown;
+    display:inline-block;
+    transition: transform 0.9s ease;
+}
+
+    .refresh:hover {
+        color:black;
+        transform: rotateY(180deg);
+    }
