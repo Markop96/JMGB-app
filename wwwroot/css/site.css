@@ -1,0 +1,154 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background: linear-gradient(145deg, #b37a00, #d59200);
+    overflow:hidden;
+}
+.navbar {
+    background: linear-gradient(to right, darkgoldenrod,darkgoldenrod,darkgoldenrod, wheat,goldenrod,darkgoldenrod,saddlebrown);
+    backdrop-filter: blur(100px) !important;
+    box-shadow: 1px 1px 15px saddlebrown !important;
+}
+
+    .navbar .container-fluid {
+        display: flex;
+        justify-content: center; 
+        width: 100%;
+    }
+
+
+footer {
+    background: linear-gradient(to right, darkgoldenrod,darkgoldenrod,darkgoldenrod, wheat,goldenrod,darkgoldenrod,saddlebrown);
+    box-shadow: 1px 1px 15px saddlebrown !important;
+}
+
+.logo {
+    font-size: 60px;
+    text-shadow: 2px 2px goldenrod;
+    color: saddlebrown;
+    letter-spacing: 0px;
+    transition: all ease-in 0.5s;
+
+}
+
+    .logo:hover {
+        color: black;
+        transform:scale(1.07);
+    }
+
+.bokor-regular {
+    font-family: "Bokor", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
+.form {
+    margin:auto;
+    border-radius: 29px;
+    background: linear-gradient(145deg, #b37a00, #d59200);
+    box-shadow: 35px 35px 70px #654500, -35px -35px 70px #ffcb00;
+    width:1000px;
+    height:400px;
+}
+
+.inform {
+padding:50px;
+
+
+}
+
+input {
+background-color:black;
+}
+
+.inputname {
+    background-color: #694101 !important;
+    color:lightyellow !important;
+    border:none !important;
+
+}
+
+.labelname {
+    color: goldenrod !important;
+}
+
+.input-container {
+    display: flex;
+    gap: 10px;
+}
+
+.input-field {
+    width:60px;
+    height: 60px;
+    text-align: center;
+    font-size: 40px;
+    border: 1px solid darkgoldenrod;
+    border-radius: 5px;
+    font-weight:900;
+    color:white;
+}
+
+    .input-field:focus {
+        background-color: #694101;
+    }
+
+
+    .input-field:focus {
+        border-color: #4d90fe;
+        outline: none;
+    }
+
+.jmbg {
+    margin:auto !important;
+    justify-content:center;
+}
+
+
+h1 {
+    padding-top:40px;
+    color: saddlebrown;
+    font-weight: 500 !important;
+    text-shadow: 1px 1px goldenrod;
+    font-size: 40px !important;
+    letter-spacing:10px;
+}
+
+p{
+    color: saddlebrown;
+    font:italic !important;
+    font-weight:500;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+.jmbg input::placeholder {
+    color: #211500; 
+}
+
+
+.jmbg input:focus::placeholder {
+    color: transparent !important; 
+}

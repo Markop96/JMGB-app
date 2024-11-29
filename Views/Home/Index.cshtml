@@ -1,0 +1,225 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<link rel="stylesheet" href="~/css/btn.css" asp-append-version="true" />
+<script src="~/css/js/numb.js" asp-append-version="true"></script>
+
+
+
+<div class="text-center">
+    <h1 class="display-4">Dobrodošli.</h1>
+    <p>Unesite ime, prezime i JMBG, zatim kliknite na dugme da biste dobili podatke o osobi.</p>
+</div>
+
+
+<div class="form">
+    <div class="inform">
+        <div class="form-floating mb-3">
+            <input class="form-control inputname" id="floatingInputIme" placeholder="Ime" oninput="validateNameInput(event)" />
+            <label for="floatingInputIme" class="labelname">Ime</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input class="form-control inputname" id="floatingInputPrezime" placeholder="Prezime" oninput="validateNameInput(event)" />
+            <label for="floatingInputPrezime" class="labelname">Prezime</label>
+        </div>
+
+
+        <div class="input-container jmbg">
+            <input type="text" maxlength="1" class="input-field" id="input1" oninput="validateNumberInput(1)" placeholder="D"/>
+            <input type="text" maxlength="1" class="input-field" id="input2" oninput="validateNumberInput(2)" placeholder="D" />
+            <input type="text" maxlength="1" class="input-field" id="input3" oninput="validateNumberInput(3)" placeholder="M" />
+            <input type="text" maxlength="1" class="input-field" id="input4" oninput="validateNumberInput(4)" placeholder="M" />
+            <input type="text" maxlength="1" class="input-field" id="input5" oninput="validateNumberInput(5)" placeholder="G" />
+            <input type="text" maxlength="1" class="input-field" id="input6" oninput="validateNumberInput(6)" placeholder="G" />
+            <input type="text" maxlength="1" class="input-field" id="input7" oninput="validateNumberInput(7)" placeholder="G" />
+            <input type="text" maxlength="1" class="input-field" id="input8" oninput="validateNumberInput(8)" placeholder="R" />
+            <input type="text" maxlength="1" class="input-field" id="input9" oninput="validateNumberInput(9)" placeholder="R" />
+            <input type="text" maxlength="1" class="input-field" id="input10" oninput="validateNumberInput(10)" placeholder="B" />
+            <input type="text" maxlength="1" class="input-field" id="input11" oninput="validateNumberInput(11)" placeholder="B" />
+            <input type="text" maxlength="1" class="input-field" id="input12" oninput="validateNumberInput(12)" placeholder="B" />
+            <input type="text" maxlength="1" class="input-field" id="input13" oninput="validateNumberInput(13)" placeholder="P" />
+        </div>
+        <p style="padding-top:5px; text-align:center">JMBG je individualna i neponovljiva oznaka građana sačinjena od 13 cifara</p>
+
+    </div>
+
+    <button class="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="updateModalContent()">
+        <svg class="svgIcon" viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm50.7-186.9L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"></path></svg>
+        Pretraži
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content" id="modalbody">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="staticBackdropLabel" style="color:white !important">Podaci o osobi:</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" >
+                <p><strong style="color:wheat !important">Ime:</strong> <span id="modalIme" style="color:white !important"></span></p> <hr />
+                <p><strong style="color:wheat !important">Prezime:</strong> <span id="modalPrezime" style="color:white !important"></span></p> <hr />
+                <p><strong style="color:wheat !important">JMBG:</strong> <span id="modalJMBG" style="color:white !important"></span></p> <hr />
+                <p><strong style="color:wheat !important">Datum rođenja:</strong> <span id="modalDatumRodjenja" style="color:white !important"></span></p> <hr />
+                <p><strong style="color:wheat !important">Mesto rođenja:</strong> <span id="modalMestoRodjenja" style="color:white !important"></span></p> <hr />
+                <p><strong style="color:wheat !important">Mesto rođenja:</strong> <span id="modalPol" style="color:white !important"></span></p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" style="background-color:darkgoldenrod; color:black; font-weight:900" data-bs-dismiss="modal">Zatvori</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    function updateModalContent() {
+
+        const ime = document.getElementById("floatingInputIme").value;
+        const prezime = document.getElementById("floatingInputPrezime").value;
+
+        const danRodjenja = `${document.getElementById("input1").value}${document.getElementById("input2").value}`;
+        const mesecRodjenja = `${document.getElementById("input3").value}${document.getElementById("input4").value}`;
+        const godinaRodjenja = `${document.getElementById("input5").value}${document.getElementById("input6").value}${document.getElementById("input7").value}`;
+
+        const datumRodjenja = `${danRodjenja}.${mesecRodjenja}.${godinaRodjenja}.`;
+
+        const ostatakJMBG = Array.from({ length: 6 }, (_, i) => document.getElementById(`input${i + 8}`).value).join('');
+        const jmbg = `${danRodjenja}${mesecRodjenja}${godinaRodjenja}${ostatakJMBG}`;
+
+        const input8 = document.getElementById("input8").value;
+        const input9 = document.getElementById("input9").value;
+        const mestoRodjenjaCode = input8 + input9;
+
+        const mestoRodjenjaMap = {
+            '01': 'Stranci u BiH',
+            '02': 'Stranci u Crnoj Gori',
+            '03': 'Stranci u Hrvatskoj',
+            '04': 'Stranci u Makedoniji',
+            '05': 'Stranci u Sloveniji',
+            '07': 'Stranci u Srbiji (bez pokrajina)',
+            '08': 'Stranci u Vojvodini',
+            '09': 'Stranci na Kosovu i Metohiji',
+            '10': 'Banja Luka (BiH)',
+            '11': 'Bihać (BiH)',
+            '12': 'Doboj (BiH)',
+            '13': 'Goražde (BiH)',
+            '14': 'Livno (BiH)',
+            '15': 'Mostar (BiH)',
+            '16': 'Prijedor (BiH)',
+            '17': 'Sarajevo (BiH)',
+            '18': 'Tuzla (BiH)',
+            '19': 'Zenica (BiH)',
+            '20': 'Podgorica (Crna Gora)',
+            '21': 'Nikšić (Crna Gora)',
+            '22': 'Pljevlja (Crna Gora)',
+            '30': 'Osijek (Hrvatska)',
+            '31': 'Bjelovar (Hrvatska)',
+            '32': 'Varaždin (Hrvatska)',
+            '33': 'Zagreb (Hrvatska)',
+            '34': 'Karlovac (Hrvatska)',
+            '35': 'Gospić (Hrvatska)',
+            '36': 'Rijeka (Hrvatska)',
+            '37': 'Sisak (Hrvatska)',
+            '38': 'Split (Hrvatska)',
+            '39': 'Ostalo (Hrvatska)',
+            '41': 'Bitola (Makedonija)',
+            '42': 'Kumanovo (Makedonija)',
+            '43': 'Ohrid (Makedonija)',
+            '44': 'Prilep (Makedonija)',
+            '45': 'Skopje (Makedonija)',
+            '46': 'Strumica (Makedonija)',
+            '47': 'Tetovo (Makedonija)',
+            '48': 'Veles (Makedonija)',
+            '49': 'Štip (Makedonija)',
+            '50': 'Slovenija',
+            '71': 'Beograd - region (Srbija)',
+            '72': 'Šumadija - region (Srbija)',
+            '73': 'Niš - region (Srbija)',
+            '74': 'Južna Morava - region (Srbija)',
+            '75': 'Zaječar - region (Srbija)',
+            '76': 'Podunavlje - region (Srbija)',
+            '77': 'Podrinje i Kolubara - region (Srbija)',
+            '78': 'Kraljevo - region (Srbija)',
+            '79': 'Užice - region (Srbija)',
+            '80': 'Novi Sad - region (Vojvodina)',
+            '81': 'Sombor - region (Vojvodina)',
+            '82': 'Subotica - region (Vojvodina)',
+            '85': 'Zrenjanin - region (Vojvodina)',
+            '86': 'Pančevo - region (Vojvodina)',
+            '87': 'Kikinda - region (Vojvodina)',
+            '88': 'Ruma - region (Vojvodina)',
+            '89': 'Sremska Mitrovica - region (Vojvodina)',
+            '91': 'Priština - region (Kosovo)',
+            '92': 'Kosovska Mitrovica - region (Kosovo)',
+            '93': 'Peć - region (Kosovo)',
+            '94': 'Đakovica - region (Kosovo)',
+            '95': 'Prizren - region (Kosovo)',
+            '96': 'Kosovsko Pomoravski - region (Kosovo)'
+        };
+
+
+        const input10 = document.getElementById("input10").value;
+        const input11 = document.getElementById("input11").value;
+        const input12 = document.getElementById("input12").value;
+        const polCode = input10 + input11 + input12;
+
+        let pol = 'Nepoznat pol';
+        if (parseInt(polCode) >= 0 && parseInt(polCode) <= 499) {
+            pol = 'Muški';
+        } else if (parseInt(polCode) >= 500 && parseInt(polCode) <= 999) {
+            pol = 'Ženski';
+        }
+
+
+        const mestoRodjenja = mestoRodjenjaMap[mestoRodjenjaCode] || 'Nepoznata lokacija';
+
+        const prviBroj = document.getElementById("input1").value;
+        const drugiBroj = document.getElementById("input2").value;
+        const treciBroj = document.getElementById("input3").value;
+        const cetvrtiBroj = document.getElementById("input4").value;
+        const petiBroj = document.getElementById("input5").value;
+        const sestiBroj = document.getElementById("input6").value;
+        const sedmiBroj = document.getElementById("input7").value;
+
+        if (ime === '' || prezime === '' || jmbg.length !== 13 ||
+            prviBroj < 0 || prviBroj > 3 ||
+            (treciBroj !== "0" && treciBroj !== "1") ||
+            (treciBroj === "1" && (cetvrtiBroj < 0 || cetvrtiBroj > 2)) ||
+            (prviBroj === "3" && (drugiBroj < 0 || drugiBroj > 1)) ||
+            (petiBroj !== "0" && petiBroj !== "9") ||
+            (petiBroj === "0" && (sestiBroj < 0 || sestiBroj > 2)) ||
+            (sestiBroj === "2" && (sedmiBroj < 0 || sedmiBroj > 4)) ||
+            (prviBroj === "0" && drugiBroj === "0") ||
+            (treciBroj === "0" && cetvrtiBroj === "0")
+        ) {
+            document.getElementById("staticBackdropLabel").textContent = 'GREŠKA - Podaci nisu adekvatno uneti!';
+            document.getElementById("modalIme").textContent = '/';
+            document.getElementById("modalPrezime").textContent = '/';
+            document.getElementById("modalJMBG").textContent = '/';
+            document.getElementById("modalDatumRodjenja").textContent = '/';
+            document.getElementById("modalMestoRodjenja").textContent = '/';
+            document.getElementById("modalPol").textContent = '/';
+
+            document.getElementById("modalbody").style.backgroundColor = 'red';
+            document.getElementById("staticBackdropLabel").style.fontWeight = '900';
+        } else {
+            document.getElementById("modalbody").style.backgroundColor = 'green';
+
+            document.getElementById("staticBackdropLabel").textContent = 'Uspešna pretraga - podaci o osobi:';
+            document.getElementById("modalIme").textContent = ime;
+            document.getElementById("modalPrezime").textContent = prezime;
+            document.getElementById("modalJMBG").textContent = jmbg;
+            document.getElementById("modalDatumRodjenja").textContent = datumRodjenja;
+            document.getElementById("modalMestoRodjenja").textContent = mestoRodjenja;
+            document.getElementById("modalPol").textContent = pol;
+
+            document.getElementById("staticBackdropLabel").style.fontWeight = 'bold';
+        }
+    }
+
+</script>
